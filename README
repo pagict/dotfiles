@@ -6,3 +6,16 @@
 
 2. move configurations, and do post installation step by
    ```confs/install.sh```
+
+
+==============
+COPYRIGHT
+for simplicity, this project refers some open-source projects as
+plain files(without git-submodule management). Hope it would not be
+a legal issue. If it is, please let me know, i'd love to fix it.
+they are
+  - github.com/ohmyzsh/ohmyzsh
+  - github.com/gpakosz/.tmux
+  - github.com/junegunn/fzf
+  - github.com/junegunn/vim-plug
+
