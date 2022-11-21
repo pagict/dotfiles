@@ -1,0 +1,56 @@
+#!/bin/bash
+
+##### 1.     Before anything, define some vars      ########
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd)"
+OS=''
+if [[ "`uname -s`x" == "Darwinx" ]]; then
+  OS="macos"
+elif [[ "`uname -s`x" == "Linuxx" ]]; then
+  OS="linux"
+fi
+shopt -s expand_aliases
+which gsed &>/dev/null
+if [ $? -eq 0 ]; then
+  alias sed=gsed
+fi
+if which gcp > /dev/null 2>&1 ; then
+  alias cp=gcp
+fi
+
+##### 2.  Common operations BEFORE moving configs  #######
+
+
+##### 3.      Moving dot files                     ########
+for item in `ls ${DIR}/dotprefix`; do
+  name=`echo $item | sed 's/${DIR}//'`
+  echo cp --backup=numbered -rf ${DIR}/dotprefix/${name} $HOME/.${name}
+  cp --backup=numbered -rf ${DIR}/dotprefix/${name} $HOME/.${name}
+done
+
+
+##### 4.  Common ops AFTER moving configs        ########
+
+######### bashrc
+CNT=`cat $HOME/.bashrc | grep -e '^source' | grep premium_env | wc -l | sed 's/^ *//' | sed 's/ *$//'`
+if [ $CNT -eq 0 ]; then
+  echo source $HOME/.premium_env >> $HOME/.bashrc
+fi
+CNT=`cat $HOME/.bashrc | grep fzf | wc -l | sed 's/^ *//' | sed 's/ *$//'`
+if [ $CNT -eq 0 ]; then
+  echo '[-f ~/.fzf.bash ] && source ~/.fzf.bash' >> $HOME/.bashrc
+fi
+
+######## vim plugins
+#mkdir -p $HOME/.vim/autoload/
+#cp -f ${DIR}/../third_parties/vim-plug/plug.vim $HOME/.vim/autoload/
+vim --cmd '' -c 'PlugInstall' -c 'qa!'
+
+#### 5.   OS-dependent POST ops                  #######
+FIN_SH=${DIR}/${OS}_fin.sh
+if [ -e ${FIN_SH} ]; then
+  echo "Run final script: ${FIN_SH}"
+  sh ${FIN_SH}
+else
+  echo "No final script: ${FIN_SH}"
+  echo "Skipping..."
+fi

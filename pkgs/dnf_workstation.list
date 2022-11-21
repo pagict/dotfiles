@@ -1,0 +1,19 @@
+-y                  # confirm by default
+--skip-broken       # skip if unavailable
+i3                  # i3wm
+i3-config           #
+i3blocks            #
+i3status            #
+i3status-config     #
+i3lock              #
+dmenu               #
+rofi                # window switcher
+kitty               # terminal emulator
+dropbox             # dropbox
+fcitx5              # TODO: not finished yet
+feh                 # wallpaper service
+google-noto-cjk-fonts-common    # fonts
+keybinder3          # registering global keyboard shortcut
+lm_sensors          # sensors to detect hardwar temperature
+code                # visual-studio-code
+microsoft-edge      # 

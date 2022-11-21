@@ -1,0 +1,2 @@
+# recover terminal title
+echo -ne '\e]0;\a'

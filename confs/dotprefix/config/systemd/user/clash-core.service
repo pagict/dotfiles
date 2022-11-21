@@ -1,0 +1,11 @@
+[Unit]
+Description=Clash(a proxy service) core
+
+Before=clash-x.service
+
+[Service]
+Type=simple
+StandardError=journal
+ExecStart=clash-core
+Restart=on-failure
+

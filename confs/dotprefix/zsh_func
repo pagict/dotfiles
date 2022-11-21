@@ -1,0 +1,21 @@
+function lcd {
+  cd $1;
+  count=`ls -l | wc -l`
+  if [ $count -lt 5 ]; then
+    ls -alt .
+  elif [ $count -lt 12 ]; then
+    ls -t .
+  else
+    ls
+  fi
+}
+
+function show_ssh_svr {
+  #cat $HOME/.ssh/config | grep -e '^Host' | cut -d' ' -f2
+  awk '/^Host/{NAME=sprintf("%-12s ", $2);getline;print NAME, $2;}' $HOME/.ssh/config
+}
+
+function ssh {
+  echo -ne "\033]0;$1\a"
+  /usr/bin/ssh $@
+}

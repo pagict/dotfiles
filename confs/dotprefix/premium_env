@@ -1,0 +1,23 @@
+alias ls='ls --color=auto'
+alias ll='ls -lha --color=auto'
+
+if [ -e /opt/homebrew/bin/brew ]; then
+  export PATH=/opt/homebrew/bin:$PATH
+fi
+
+if [[ "`basename $SHELL`x" == "zshx" ]]; then
+# export plugins=(autojump bazel colored-man-pages colorize common-aliases dnf fd git git-flow gitignore git-lfs gnu-utils golang history knife man pip rsync ssh-agent sudo systemd tmux tmuxinator vim-interaction vi-mode vscode yum zsh-interactive-cd zsh-navigation-tools)
+#DISABLE_AUTO_TITLE="true"
+
+  source $HOME/.zsh_func
+fi
+
+
+export http_proxy=http://127.0.0.1:10818
+export https_proxy=http://127.0.0.1:10818
+export all_proxy=socks5://127.0.0.1:10818
+
+if which neofetch > /dev/null 2>&1; then
+  neofetch
+fi
+

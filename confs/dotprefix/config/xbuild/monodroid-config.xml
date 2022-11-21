@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<monodroid>
+  <android-sdk path="/Users/pengpremium/Library/Android/sdk" />
+  <java-sdk path="/usr" />
+  <android-ndk path="/Users/pengpremium/Library/Android/sdk/ndk-bundle" />
+</monodroid>

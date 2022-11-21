@@ -1,0 +1,8 @@
+1. install pkgs by
+   ```pkgs/install.sh```
+
+   export DISPLAY=:0
+   can install GUI apps for workstation
+
+2. move configurations, and do post installation step by
+   ```confs/install.sh```

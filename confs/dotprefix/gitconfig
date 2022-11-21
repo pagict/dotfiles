@@ -1,0 +1,14 @@
+[user]
+  name = premiumpeng
+  email = pagict@gmail.com
+[core]
+  editor = vim
+  pager = less
+[alias]
+  glog = log --pretty=format:\"%C(auto)%h %C(magenta)<%ad> %C(green)[%an] %C(blue normal bold)| %Creset%s%C(auto)%d\" --graph --date=short
+  unstage = reset HEAD --
+  co = checkout
+  ci = commit
+  st = status
+[diff]
+	guitool = bc3

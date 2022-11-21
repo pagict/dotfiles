@@ -1,0 +1,13 @@
+[Unit]
+Description=Clash X(fucking the gfw) graphical layout
+Requires=clash-core.service
+
+Before=clash.target
+
+[Service]
+Type=simple
+ExecStart=clashx
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

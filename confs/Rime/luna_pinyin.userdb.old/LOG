@@ -1,0 +1,5 @@
+2018/09/10-09:04:59.813771 70000365e000 Log #191: 0 ops saved to Table #193 OK
+2018/09/10-09:04:59.814011 70000365e000 Archiving /Users/premiumfdt/Library/Rime/luna_pinyin.userdb/000191.log: OK
+2018/09/10-09:04:59.815943 70000365e000 Table #192: 2719 entries OK
+2018/09/10-09:04:59.816495 70000365e000 Archiving /Users/premiumfdt/Library/Rime/luna_pinyin.userdb/MANIFEST-000189: OK
+2018/09/10-09:04:59.817198 70000365e000 **** Repaired leveldb /Users/premiumfdt/Library/Rime/luna_pinyin.userdb; recovered 1 files; 103652 bytes. Some data may have been lost. ****

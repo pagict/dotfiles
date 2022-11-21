@@ -1,0 +1,18 @@
+showNewVersionIcon: true
+hideAfterStartup: true
+randomControllerPort: false
+runTimeFormat: "hh : mm : ss"
+trayOrders:
+  - - traffic
+  - - status
+    - icon
+    - text
+hideTrayIcon: false
+connShowProcess: true
+showTrayProxyDelayIndicator: true
+editor: 1
+theme: 1
+trayScriptManualRunTime: 1662900812575
+showNotifications: true
+systemTheme: true
+trayText: ""

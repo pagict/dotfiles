@@ -1,0 +1,45 @@
+-y                  # confirm by default
+--skip-broken       # skip if unavailable
+bat                 # cat-alternative
+colord              # colorful
+fzf                 # shell fuzzy search
+man                 #
+man-db              # manual pages
+man-pages           #
+man-pages-zh-CN     #
+snap-confine        # snap, pkg management across distributions
+snapd               #
+neofetch            # shell's launching logo
+
+sysstat             # admin tools
+autojump            #
+coreutils           #
+elfutils            #
+htop                #
+telnet              #
+tmux                #
+tree                #
+unzip               #
+vim                 #
+git                 #
+zsh                 #
+zsh-autosuggestions #
+zsh-syntax-highlighting #
+wget                #
+curl                #
+util-linux-user     #
+
+make                # development toolset
+bear                # generate compiler_commands.json for Makefile-based projects
+clang               #
+clang-tools-extra   #
+cloc                # count lines of code
+diffutils           # diff utils
+cmake   #
+cpp     #
+gcc     #
+gcc-c++ #
+llvm    #
+lldb    #
+gdb     #
+golang  #
