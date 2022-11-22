@@ -23,8 +23,8 @@ fi
 ##### 3.      Moving dot files                     ########
 for item in `ls ${DIR}/dotprefix`; do
   name=`echo $item | sed 's/${DIR}//'`
-  echo cp --backup=numbered -rf ${DIR}/dotprefix/${name} $HOME/.${name}
-  cp --backup=numbered -rf ${DIR}/dotprefix/${name} $HOME/.${name}
+  echo "cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}"
+  cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}
 done
 
 

@@ -4,4 +4,4 @@ shopt -s expand_aliases
 if which gcp > /dev/null & 2>&1; then
   alias cp=gcp
 fi
-cp -fr --backup=numbered ${DIR}/Rime $HOME/Library/Rime
+cp --backup=numbered -rfT ${DIR}/Rime $HOME/Library/Rime

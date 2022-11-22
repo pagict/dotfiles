@@ -9,6 +9,7 @@ man-pages           #
 man-pages-zh-CN     #
 snap-confine        # snap, pkg management across distributions
 snapd               #
+coreutils-common    # manual pages for coreutils
 neofetch            # shell's launching logo
 
 sysstat             # admin tools
