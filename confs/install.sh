@@ -8,6 +8,12 @@ if [[ "`uname -s`x" == "Darwinx" ]]; then
 elif [[ "`uname -s`x" == "Linuxx" ]]; then
   OS="linux"
 fi
+PLATFORMS="macos
+linux
+windows
+freebsd"
+OTHEROS=$(echo ${PLATFORMS} | awk -v os="$OS" '{if ($0 != os) print $0;}')
+
 shopt -s expand_aliases
 which gsed &>/dev/null
 if [ $? -eq 0 ]; then
@@ -23,6 +29,13 @@ fi
 ##### 3.      Moving dot files                     ########
 for item in `ls ${DIR}/dotprefix`; do
   name=`echo $item | sed 's/${DIR}//'`
+  suff=$(echo ${name} | awk -F'.' '{print NF;}')
+  if [[ " ${OTHEROS[*]} " =~ " ${suff} " ]]; then
+    # this belongs to other platforms, skip
+    continue
+  fi
+  # strip the OS suffix
+  name=$(echo ${name} | sed "s/\.$OS$//")
   echo "cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}"
   cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}
 done
