@@ -1,0 +1,16 @@
+files:
+  - time: 1664591810742.yml
+    name: 434013d9-830d-484d-b5c7-61c62c2a8ed1
+    url: https://s.trojanflare.com/clashx/434013d9-830d-484d-b5c7-61c62c2a8ed1
+    selected:
+      - name: GLOBAL
+        now: DIRECT
+      - name: Proxy
+        now: 澳大利亚-AU2-3-流量倍率:1.0
+    interval: 24
+    subInfo: {}
+    mode: rule
+    homeWeb: ""
+    cron: ""
+    headers: ""
+index: 0

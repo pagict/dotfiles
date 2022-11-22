@@ -26,6 +26,7 @@
 # Each block command defaults to the script name to avoid boilerplate.
 # Change $SCRIPT_DIR to the location of your scripts!
 # command=$SCRIPT_DIR/$BLOCK_NAME
+SCRIPT_DIR=$HOME/.config/i3blocks
 separator_block_width=15
 markup=none
 
@@ -39,7 +40,7 @@ markup=none
 command=$SCRIPT_DIR/volume/volume
 #label=♪
 #label=VOL
-label= 
+label=
 interval=5
 signal=10
 #STEP=5%
@@ -50,14 +51,14 @@ signal=10
 [memory]
 command=$SCRIPT_DIR/memory/memory
 #label=MEM
-label= 
+label=
 #separator=false
 interval=30
 
 [memory]
 #command=$SCRIPT_DIR/memory/memory
 #label=SWAP
-label= 
+label=
 instance=swap
 #separator=false
 interval=30
@@ -70,7 +71,7 @@ interval=30
 [disk]
 command=$SCRIPT_DIR/disk/disk
 #label=HOME
-label= 
+label=
 #DIR=/mnt/data
 interval=30
 
@@ -109,7 +110,7 @@ min_width=CPU 100.00%
 [load_average]
 command=$SCRIPT_DIR/load_average/load_average
 #label=LOAD
-label= 
+label=
 interval=10
 
 # Battery indicator
@@ -119,14 +120,14 @@ interval=10
 command=$SCRIPT_DIR/battery/battery
 #label=BAT
 #label=⚡
-label= 
+label=
 interval=30
 
 # Date Time
 #
 [time]
 command=date '+%Y-%m-%d %H:%M:%S'
-label= 
+label=
 interval=5
 
 # Generic media player support
@@ -152,7 +153,7 @@ interval=5
 [temperature]
 command=$SCRIPT_DIR/temperature/temperature
 #label=TEMP
-label= 
+label=
 interval=10
 
 # Key indicators
