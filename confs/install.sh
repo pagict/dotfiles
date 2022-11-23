@@ -2,17 +2,16 @@
 
 ##### 1.     Before anything, define some vars      ########
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd)"
+echo DIR is ${DIR}
 OS=''
 if [[ "`uname -s`x" == "Darwinx" ]]; then
   OS="macos"
 elif [[ "`uname -s`x" == "Linuxx" ]]; then
   OS="linux"
 fi
-PLATFORMS="macos
-linux
-windows
-freebsd"
-OTHEROS=$(echo ${PLATFORMS} | awk -v os="$OS" '{if ($0 != os) print $0;}')
+PLATFORMS="macos\nlinux\nwindows\nfreebsd"
+OTHEROS=$(echo -e ${PLATFORMS} | grep -v ${OS})
+echo OS is: ${OS}
 
 shopt -s expand_aliases
 which gsed &>/dev/null
@@ -27,17 +26,30 @@ fi
 
 
 ##### 3.      Moving dot files                     ########
-for item in `ls ${DIR}/dotprefix`; do
-  name=`echo $item | sed 's/${DIR}//'`
-  suff=$(echo ${name} | awk -F'.' '{print NF;}')
-  if [[ " ${OTHEROS[*]} " =~ " ${suff} " ]]; then
+dentries=$(ls ${DIR}/dotprefix | grep -v ${DIR}/dotprefix/config)
+for name in ${dentries}; do
+  suff=$(echo ${name} | awk -F'.' '{print $NF;}')
+  if echo ${OTHERS} | grep ${suff} > /dev/null 2>&1; then
     # this belongs to other platforms, skip
     continue
   fi
   # strip the OS suffix
-  name=$(echo ${name} | sed "s/\.$OS$//")
-  echo "cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}"
-  cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}
+  newname=$(echo ${name} | sed "s/\.$OS$//")
+  echo "cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${newname}"
+  cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${newname}
+done
+
+echo "Moving .config files..."
+dentries=$(ls ${DIR}/dotprefix/config)
+for name in ${dentries}; do
+  suff=$(echo ${name} | awk -F'.' '{print $NF;}')
+  if echo ${OTHEROS} | grep ${suff} > /dev/null 2>&1 ; then
+    # this belongs to other platforms, skip
+    continue
+  fi
+  newname=$(echo ${name} | sed "s/\.${OS}$//")
+  echo "cp --backup=numbered -rfT ${DIR}/dotprefix/config/${name} $HOME/.config/${newname}"
+  cp --backup=numbered -rfT ${DIR}/dotprefix/config/${name} $HOME/.config/${newname}
 done
 
 
