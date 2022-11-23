@@ -26,32 +26,34 @@ fi
 
 
 ##### 3.      Moving dot files                     ########
-dentries=$(ls ${DIR}/dotprefix | grep -v ${DIR}/dotprefix/config)
-for name in ${dentries}; do
-  suff=$(echo ${name} | awk -F'.' '{print $NF;}')
-  if echo ${OTHERS} | grep ${suff} > /dev/null 2>&1; then
-    # this belongs to other platforms, skip
-    continue
+PSDIRS=(config)           # `PSDIRS` Platform-dependent dirs
+
+# copy first level config files/dirs
+for name in $(ls ${DIR}/dotprefix); do
+  if [ -d ${DIR}/dotprefix/${name} ]; then
+    if [[ " ${PSDIRS[*]} " =~ " ${name} " ]]; then
+      # if platform-dependent directory, copy it later
+      continue
+    fi
   fi
-  # strip the OS suffix
-  newname=$(echo ${name} | sed "s/\.$OS$//")
-  echo "cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${newname}"
-  cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${newname}
+  echo "cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}"
+  cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}
 done
 
-echo "Moving .config files..."
-dentries=$(ls ${DIR}/dotprefix/config)
-for name in ${dentries}; do
-  suff=$(echo ${name} | awk -F'.' '{print $NF;}')
-  if echo ${OTHEROS} | grep ${suff} > /dev/null 2>&1 ; then
-    # this belongs to other platforms, skip
-    continue
-  fi
-  newname=$(echo ${name} | sed "s/\.${OS}$//")
-  echo "cp --backup=numbered -rfT ${DIR}/dotprefix/config/${name} $HOME/.config/${newname}"
-  cp --backup=numbered -rfT ${DIR}/dotprefix/config/${name} $HOME/.config/${newname}
+# copy files/dirs under platform-dependent directory
+for dir in ${PSDIRS}; do
+  for name in $(ls ${DIR}/dotprefix/${dir}); do
+    suff=$(echo ${name} | awk -F'.' '{print $NF;}')
+    if echo ${OTHEROS} | grep ${suff} > /dev/null 2>&1 ; then
+      # other platforms' config file
+      echo "skip copying ${DIR}/dotprefix/${dir}/${name}..."
+      continue
+    fi
+    newname=$(echo ${name} | sed "s/\.${OS}$//")
+    echo "cp --backup=numbered -rfT ${DIR}/dotprefix/${dir}/${name} $HOME/.${dir}/${newname}"
+    cp --backup=numbered -rfT ${DIR}/dotprefix/${dir}/${name} $HOME/.${dir}/${newname}
+  done
 done
-
 
 ##### 4.  Common ops AFTER moving configs        ########
 
@@ -66,8 +68,6 @@ if [ $CNT -eq 0 ]; then
 fi
 
 ######## vim plugins
-#mkdir -p $HOME/.vim/autoload/
-#cp -f ${DIR}/../third_parties/vim-plug/plug.vim $HOME/.vim/autoload/
 vim --cmd '' -c 'PlugInstall' -c 'qa!'
 
 #### 5.   OS-dependent POST ops                  #######
