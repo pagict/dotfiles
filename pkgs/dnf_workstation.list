@@ -7,6 +7,7 @@ i3status            #
 i3status-config     #
 i3lock              #
 dmenu               #
+jgmenu              #
 rofi                # window switcher
 kitty               # terminal emulator
 dropbox             # dropbox
@@ -16,4 +17,4 @@ google-noto-cjk-fonts-common    # fonts
 keybinder3          # registering global keyboard shortcut
 lm_sensors          # sensors to detect hardwar temperature
 code                # visual-studio-code
-microsoft-edge      # 
+microsoft-edge      #

@@ -183,7 +183,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status --config ~/.config/i3/i3status.conf
+  bindsym button3 exec --no-startup-id jgmenu --at-pointer
+  status_command i3status --config ~/.config/i3/i3status.conf
 }
 
 exec --no-startup-id feh --bg-scale ~/Pictures/celtics.wallpaper.jpg
