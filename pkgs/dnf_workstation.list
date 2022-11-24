@@ -6,6 +6,7 @@ i3blocks            #
 i3status            #
 i3status-config     #
 i3lock              #
+picom               #
 dmenu               #
 jgmenu              #
 rofi                # window switcher

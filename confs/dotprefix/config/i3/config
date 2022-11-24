@@ -34,6 +34,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+exec --no-startup-id picom -b
+exec --no-startup-id $HOME/.fehbg
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -186,5 +189,3 @@ bar {
   bindsym button3 exec --no-startup-id jgmenu --at-pointer
   status_command i3status --config ~/.config/i3/i3status.conf
 }
-
-exec --no-startup-id feh --bg-scale ~/Pictures/celtics.wallpaper.jpg
