@@ -1,11 +1,11 @@
 #!/bin/bash
 
 CMD=''
-if which dnf > /dev/null 2>&1; then
+if command -v dnf &> /dev/null ; then
   CMD=dnf
-elif which dnf > /dev/null 2>&1; then
+elif command -v apt &> /dev/null ; then
   CMD=apt
-elif which brew > /dev/null 2>&1; then
+elif command -v brew &> /dev/null ; then
   CMD=brew
 else
   echo 'Unknown package management tools'

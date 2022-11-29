@@ -14,11 +14,10 @@ OTHEROS=$(echo -e ${PLATFORMS} | grep -v ${OS})
 echo OS is: ${OS}
 
 shopt -s expand_aliases
-which gsed &>/dev/null
-if [ $? -eq 0 ]; then
+if command -v gsed &> /dev/null ; then
   alias sed=gsed
 fi
-if which gcp > /dev/null 2>&1 ; then
+if command -v gcp &> /dev/null ; then
   alias cp=gcp
 fi
 
