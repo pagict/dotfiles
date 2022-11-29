@@ -1,0 +1,40 @@
+-y
+--allow-unauthenticated
+vim
+tmux
+zsh
+htop
+# bat
+# fzf
+man
+manpages
+snap
+coreutils
+# neofetch
+
+sysstat
+autojump
+elfutils
+telnet
+tree
+unzip
+git
+# zsh-autosuggestions
+zsh-syntax-highlighting
+wget
+curl
+# util-linux-user
+
+make
+bear
+clang
+# clang-tools-extra
+cloc
+diffutils
+cmake
+gcc
+g++
+llvm
+lldb
+gdb
+golang
