@@ -22,6 +22,7 @@ if command -v gcp &> /dev/null ; then
 fi
 
 ##### 2.  Common operations BEFORE moving configs  #######
+mkdir $HOME/.ssh 2>/dev/null
 
 
 ##### 3.      Moving dot files                     ########

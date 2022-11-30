@@ -1,4 +1,5 @@
 -y                  # confirm by default
+-m                  # skip missing
 i3                  # i3wm
 i3blocks            #
 i3status            #

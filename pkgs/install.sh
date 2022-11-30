@@ -3,8 +3,8 @@
 CMD=''
 if command -v dnf &> /dev/null ; then
   CMD=dnf
-elif command -v apt &> /dev/null ; then
-  CMD=apt
+elif command -v apt-get &> /dev/null ; then
+  CMD=apt-get
 elif command -v brew &> /dev/null ; then
   CMD=brew
 else
@@ -24,7 +24,7 @@ FILE=${DIR}/${CMD}.list
 PKGS=$(awk -F'#' '{if (NF>1) {print $1;} else {print $0;}}' $FILE)
 ECHO_CMD=$(echo ${CMD} install ${PKGS})
 echo ${ECHO_CMD}
-${CMD} install ${PKGS}
+${CMD}-get install -m ${PKGS}
 
 if [[ -n ${DISPLAY} ]]; then
   FILE=${DIR}/${CMD}_workstation_pre.sh
