@@ -64,7 +64,7 @@ if [ $CNT -eq 0 ]; then
 fi
 CNT=`cat $HOME/.bashrc | grep fzf | wc -l | sed 's/^ *//' | sed 's/ *$//'`
 if [ $CNT -eq 0 ]; then
-  echo '[-f ~/.fzf.bash ] && source ~/.fzf.bash' >> $HOME/.bashrc
+  echo '[ -f ~/.fzf.bash ] && source ~/.fzf.bash' >> $HOME/.bashrc
 fi
 
 ######## vim plugins
