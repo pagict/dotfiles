@@ -1,5 +1,5 @@
-alias ls='ls --color=auto'
-alias ll='ls -lha --color=auto'
+alias ls='ls --color -G'
+alias ll='ls -lha --color -G'
 
 if [ -e /opt/homebrew/bin/brew ]; then
   export PATH=/opt/homebrew/bin:$PATH
