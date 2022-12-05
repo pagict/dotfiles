@@ -24,7 +24,7 @@ FILE=${DIR}/${CMD}.list
 PKGS=$(awk -F'#' '{if (NF>1) {print $1;} else {print $0;}}' $FILE)
 ECHO_CMD=$(echo ${CMD} install ${PKGS})
 echo ${ECHO_CMD}
-${CMD}-get install -m ${PKGS}
+${CMD} install -m ${PKGS}
 
 if [[ -n ${DISPLAY} ]]; then
   FILE=${DIR}/${CMD}_workstation_pre.sh
