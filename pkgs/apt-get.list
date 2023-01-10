@@ -5,13 +5,13 @@ vim
 tmux
 zsh
 htop
-# bat
-# fzf
+bat
+fzf
 man
 manpages
 snap
 coreutils
-# neofetch
+neofetch
 
 sysstat
 autojump
@@ -20,7 +20,7 @@ telnet
 tree
 unzip
 git
-# zsh-autosuggestions
+zsh-autosuggestions
 zsh-syntax-highlighting
 wget
 curl
@@ -29,6 +29,8 @@ curl
 make
 bear
 clang
+clangd
+clang-format
 # clang-tools-extra
 cloc
 diffutils
