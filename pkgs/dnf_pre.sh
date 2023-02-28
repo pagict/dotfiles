@@ -9,3 +9,5 @@ FILE="/etc/dnf/dnf.conf"
 if [ -f ${FILE} ]; then
   sed -i 's/^tsflags.*nodocs.*/# &/' ${FILE}
 fi
+
+dnf install -y epel-release
