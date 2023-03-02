@@ -15,9 +15,9 @@ fi
 if ! command -v bat &> /dev/null ; then  alias bat=batcat
 fi
 
-export http_proxy=http://127.0.0.1:10818
-export https_proxy=http://127.0.0.1:10818
-export all_proxy=socks5://127.0.0.1:10818
+# export http_proxy=http://127.0.0.1:10818
+# export https_proxy=http://127.0.0.1:10818
+# export all_proxy=socks5://127.0.0.1:10818
 
 if command -v neofetch &> /dev/null ; then
   neofetch
