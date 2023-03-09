@@ -18,6 +18,7 @@ fi
 # export http_proxy=http://127.0.0.1:10818
 # export https_proxy=http://127.0.0.1:10818
 # export all_proxy=socks5://127.0.0.1:10818
+export EDITOR=vim
 
 if command -v neofetch &> /dev/null ; then
   neofetch
