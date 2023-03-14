@@ -36,8 +36,11 @@ for name in $(ls ${DIR}/dotprefix); do
       continue
     fi
   fi
-  echo "mkdir -p ${HOME}/.${name}"
-  mkdir -p ${HOME}/.${name}
+  if [[ -d ${DIR}/dotprefix/${name} ]]; then
+    # create a mirror if is directory
+    echo "mkdir -p ${HOME}/.${name}"
+    mkdir -p ${HOME}/.${name}
+  fi
   echo "cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}"
   cp --backup=numbered -rfT ${DIR}/dotprefix/${name} $HOME/.${name}
 done
@@ -52,8 +55,11 @@ for dir in ${PSDIRS}; do
       continue
     fi
     newname=$(echo ${name} | sed "s/\.${OS}$//")
-    echo "mkdir -p ${HOME}/.${dir}"
-    mkdir -p ${HOME}/.${dir}
+    if [[ -d ${DIR}/dotprefix/${name} ]]; then
+      # create a mirror if is directory
+      echo "mkdir -p ${HOME}/.${dir}"
+      mkdir -p ${HOME}/.${dir}
+    fi
     echo "cp --backup=numbered -rfT ${DIR}/dotprefix/${dir}/${name} $HOME/.${dir}/${newname}"
     cp --backup=numbered -rfT ${DIR}/dotprefix/${dir}/${name} $HOME/.${dir}/${newname}
   done
