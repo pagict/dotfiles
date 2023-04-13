@@ -17,7 +17,7 @@
                 },
                 "rules": [
                     {
-                        "description": "left_ctrl + hjklnp, as arrows, and page up/down.",
+                        "description": "left_ctrl + hjklnpae -> arrows, page up/down, home/line end.",
                         "manipulators": [
                             {
                                 "from": {
