@@ -2,7 +2,7 @@
 PATCH_FILE=incoming.patch
 CURRENT=master
 TARGET=origin/master
-#git fetch
+git fetch
 git diff --no-prefix ${CURRENT} ${TARGET} > ${PATCH_FILE}
 
 ESCAPED_HOME=$(printf '%s\n' "${HOME}" | sed -e 's/[\/&]/\\&/g')
