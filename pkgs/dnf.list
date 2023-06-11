@@ -36,6 +36,7 @@ clang               #
 clang-tools-extra   #
 cloc                # count lines of code
 diffutils           # diff utils
+patch
 cmake   #
 cpp     #
 gcc     #
