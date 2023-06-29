@@ -3,6 +3,7 @@
 ##### 1.     Before anything, define some vars      ########
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd)"
 echo DIR is ${DIR}
+# ${DIR} is where this script at
 OS=''
 if [[ "`uname -s`x" == "Darwinx" ]]; then
   OS="macos"
@@ -55,7 +56,7 @@ for dir in ${PSDIRS}; do
       continue
     fi
     newname=$(echo ${name} | sed "s/\.${OS}$//")
-    if [[ -d ${DIR}/dotprefix/${name} ]]; then
+    if [[ -d ${DIR}/dotprefix/${dir}/${name} ]]; then
       # create a mirror if is directory
       echo "mkdir -p ${HOME}/.${dir}"
       mkdir -p ${HOME}/.${dir}
@@ -79,6 +80,10 @@ fi
 
 ######## vim plugins
 vim --cmd '' -c 'PlugInstall' -c 'qa!'
+######## fzf
+if ! command -v fzf &> /dev/null; then
+  source ${DIR}/dotprefix/fzf/install --all 2>/dev/null
+fi
 
 #### 5.   OS-dependent POST ops                  #######
 FIN_SH=${DIR}/${OS}_fin.sh
