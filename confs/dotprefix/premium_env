@@ -3,7 +3,7 @@ alias ll='ls -lha --color -G'
 
 if [[ ":$PATH:" == *":$HOME/.fzf/bin:"* ]]; then
 else
-  export PATH=$HOME/.fzf/bin:$PATH
+  export PATH=$PATH:$HOME/.fzf/bin
 fi
 
 if [ -e /opt/homebrew/bin/brew ]; then
