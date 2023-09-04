@@ -7,6 +7,9 @@ git diff --no-prefix ${CURRENT} ${TARGET} > ${PATCH_FILE}
 
 ESCAPED_HOME=$(printf '%s\n' "${HOME}" | sed -e 's/[\/&]/\\&/g')
 
+if command gsed -v ; then
+  alias sed=gsed
+fi
 sed -i "s/ confs\/dotprefix\// ${ESCAPED_HOME}\/./g" ${PATCH_FILE}
 
 patch -f -p0 -d / < ${PATCH_FILE}
