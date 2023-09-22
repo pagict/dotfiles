@@ -2,6 +2,7 @@ alias ls='ls --color -G'
 alias ll='ls -lha --color -G'
 
 if [[ ":$PATH:" == *":$HOME/.fzf/bin:"* ]]; then
+  :
 else
   export PATH=$PATH:$HOME/.fzf/bin
 fi
