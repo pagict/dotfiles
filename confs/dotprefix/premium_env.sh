@@ -1,14 +1,15 @@
 alias ls='ls --color -G'
 alias ll='ls -lha --color -G'
 
+if [ -e /opt/homebrew/bin/brew ]; then
+  export PATH=/opt/homebrew/bin:$PATH
+fi
+export PATH=${HOME}/.local/bin:${PATH}
+
 if [[ ":$PATH:" == *":$HOME/.fzf/bin:"* ]]; then
   :
 else
   export PATH=$PATH:$HOME/.fzf/bin
-fi
-
-if [ -e /opt/homebrew/bin/brew ]; then
-  export PATH=/opt/homebrew/bin:$PATH
 fi
 
 if [[ "`basename $SHELL`x" == "zshx" ]]; then
@@ -17,6 +18,8 @@ if [[ "`basename $SHELL`x" == "zshx" ]]; then
 
   source $HOME/.zsh_func
 fi
+
+source ${HOME}/.premium_func.sh
 
 if ! command -v bat &> /dev/null ; then  alias bat=batcat
 fi

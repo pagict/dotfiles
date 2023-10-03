@@ -71,7 +71,7 @@ done
 ######### bashrc
 CNT=`cat $HOME/.bashrc | grep -e '^source' | grep premium_env | wc -l | sed 's/^ *//' | sed 's/ *$//'`
 if [ $CNT -eq 0 ]; then
-  echo source $HOME/.premium_env >> $HOME/.bashrc
+  echo source $HOME/.premium_env.sh >> $HOME/.bashrc
 fi
 CNT=`cat $HOME/.bashrc | grep fzf | wc -l | sed 's/^ *//' | sed 's/ *$//'`
 if [ $CNT -eq 0 ]; then
