@@ -12,7 +12,7 @@ else
   export PATH=$PATH:$HOME/.fzf/bin
 fi
 
-if [[ "`basename $SHELL`x" == "zshx" ]]; then
+if [[ -n ${SHELL} && "`basename $SHELL`x" == "zshx" ]]; then
 # export plugins=(autojump bazel colored-man-pages colorize common-aliases dnf fd git git-flow gitignore git-lfs gnu-utils golang history knife man pip rsync ssh-agent sudo systemd tmux tmuxinator vim-interaction vi-mode vscode yum zsh-interactive-cd zsh-navigation-tools)
 #DISABLE_AUTO_TITLE="true"
 
