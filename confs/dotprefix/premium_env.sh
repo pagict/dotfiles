@@ -21,7 +21,8 @@ fi
 
 source ${HOME}/.premium_func.sh
 
-if ! command -v bat &> /dev/null ; then  alias bat=batcat
+if ! command -v bat &> /dev/null ; then
+  alias bat=batcat
 fi
 
 export EDITOR=vim

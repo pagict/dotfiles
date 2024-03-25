@@ -11,17 +11,23 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
-Plug 'unkiwii/vim-nerdtree-sync'
+Plug 'sheerun/vim-polyglot'
+Plug 'pineapplegiant/spaceduck'
 call plug#end()
 
 hi CurrentWord ctermbg=53
 hi CurrentWordTwins ctermbg=237 cterm=underline
-colorscheme darkblue
-set listchars=tab:!·,trail:·
 
-" {{{ vim-nerdtree-sync highlight the file row in NERDTree
-let g:nerdtree_sync_cursorline=1
-" }}}
+"{{ set up colorscheme
+if exists('+termguicolors')
+   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+   set termguicolors
+endif
+colorscheme spaceduck
+"}} set up colorscheme
+
+set listchars=tab:!·,trail:·
 
 "{{{ vim-airline's status bar style
 " powerline symbols
