@@ -20,3 +20,4 @@ keybinder3          # registering global keyboard shortcut
 lm_sensors          # sensors to detect hardwar temperature
 code                # visual-studio-code
 microsoft-edge      #
+glibc-langpack-en   # for install/setup locales
