@@ -37,6 +37,6 @@ export LESS="--RAW-CONTROL-CHARS"
 # export all_proxy=socks5://127.0.0.1:10818
 
 if command -v neofetch &> /dev/null ; then
-  neofetch
+  neofetch --disable "Packages"
 fi
 
