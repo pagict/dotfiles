@@ -27,6 +27,14 @@ PKGS=$(awk -F'#' '{if (NF>1) {print $1;} else {print $0;}}' $FILE)
 ECHO_CMD=$(echo ${CMD} install ${PKGS})
 echo ${ECHO_CMD}
 ${CMD} install ${PKGS}
+if [ ${CMD} == "brew" ]; then
+   FILE=${DIR}/brew-cask.list
+   PKGS0=$(awk -F'#' '{if (NF>1) {print $1;} else {print $0;}}' $FILE)
+   PKGS="${PKGS0//$'\n'/ }"
+   ECHO_CMD=$(echo ${CMD} install --cask ${PKGS})
+   echo ${ECHO_CMD}
+   ${CMD} install --cask ${PKGS}
+fi
 
 
 if [[ -n ${DISPLAY} ]]; then
