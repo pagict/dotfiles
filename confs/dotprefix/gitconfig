@@ -10,5 +10,23 @@
   co = checkout
   ci = commit
   st = status
+  cherry2test = "!f() { \
+    rev=$(git rev-parse HEAD); \
+    from_branch=$(git rev-parse --abbrev-ref HEAD); \
+    git checkout test && \
+    git pull --ff-only && \
+    GIT_COMMITTER_DATE=\"$(git show -s --format=%ci $rev)\" git cherry-pick -x $rev && \
+    git commit --amend -m \"[$from_branch] $(git log -1 --pretty=%B)\"; \
+  }; f"
+  previewmerge = "!f() { \
+    rev=${1:-HEAD}; \
+    base=$(git merge-base master $rev); \
+    git diff $base $rev "${@:2}"; \
+  }; f"
+  mblog = "!f() { \
+    local compare_with=${1:-HEAD}; \
+    local merge_base=$(git merge-base master $compare_with); \
+    git log --oneline $merge_base..$compare_with; \
+  }; f"
 [diff]
 	guitool = bc3
