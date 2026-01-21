@@ -1,6 +1,6 @@
 [user]
-  name = premiumpeng
-  email = pagict@gmail.com
+#  name = premiumpeng
+#  email = pagict@gmail.com
 [core]
   editor = vim
   pager = less
