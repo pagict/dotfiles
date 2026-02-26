@@ -116,6 +116,12 @@ endif
 " http://www.linuxpowertop.org/known.php
 let &guicursor = &guicursor . ",a:blinkon0"
 set number
+" {{{ 高亮当前行，行号，列
+set cursorline
+set cursorlineopt=both
+autocmd ColorScheme * highlight CursorLineNr ctermfg=red guifg=orange
+set cursorcolumn
+" }}}
 syntax enable
 syntax on
 
