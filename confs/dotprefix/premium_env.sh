@@ -25,6 +25,11 @@ if ! command -v bat &> /dev/null ; then
   alias bat=batcat
 fi
 
+if command -v bat &> /dev/null; then
+  alias batgo='bat --language=go'
+  alias batc='bat --language=cpp'
+fi
+
 export EDITOR=vim
 
 # Get color support for 'less'
