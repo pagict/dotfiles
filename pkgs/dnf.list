@@ -3,6 +3,7 @@
 bat                 # cat-alternative
 colord              # colorful
 fzf                 # shell fuzzy search
+ripgrep            # fast recursive search, provides rg
 man                 #
 man-db              # manual pages
 man-pages           #
@@ -22,6 +23,7 @@ tmux                #
 tree                #
 unzip               #
 vim                 #
+python3-pip         #
 git                 #
 zsh                 #
 zsh-autosuggestions #

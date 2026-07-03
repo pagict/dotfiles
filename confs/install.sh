@@ -80,6 +80,27 @@ fi
 
 ######## vim plugins
 vim --cmd '' -c 'PlugInstall' -c 'qa!'
+
+######## LSP servers for Vim
+mkdir -p ${HOME}/.local/bin
+export PATH=${HOME}/.local/bin:${PATH}
+if ! command -v gopls &> /dev/null; then
+  if command -v go &> /dev/null; then
+    echo "Install gopls into ${HOME}/.local/bin..."
+    GOBIN=${HOME}/.local/bin go install golang.org/x/tools/gopls@latest
+  else
+    echo "Skip gopls: go is not installed"
+  fi
+fi
+if ! command -v pylsp &> /dev/null; then
+  if command -v python3 &> /dev/null; then
+    echo "Install pylsp for current user..."
+    python3 -m pip install --user python-lsp-server
+  else
+    echo "Skip pylsp: python3 is not installed"
+  fi
+fi
+
 ######## fzf
 if ! command -v fzf &> /dev/null; then
   source ${DIR}/dotprefix/fzf/install --all 2>/dev/null

@@ -2,11 +2,13 @@
 --allow-unauthenticated
 -m
 vim
+python3-pip
 tmux
 zsh
 htop
 bat
 fzf
+ripgrep
 man
 manpages
 snap

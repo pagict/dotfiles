@@ -13,6 +13,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'pineapplegiant/spaceduck'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 hi CurrentWord ctermbg=53
@@ -28,6 +30,60 @@ colorscheme spaceduck
 "}} set up colorscheme
 
 set listchars=tab:!·,trail:·
+
+"{{{ LSP configurations
+" Classic Vim LSP stack. vim-lsp supports Vim 8 and Neovim, and
+" vim-lsp-settings handles server registration/installation.
+let g:lsp_settings_servers_dir = expand('~/.vim-lsp-settings/servers')
+let g:lsp_settings_root_markers = [
+      \ '.git', '.git/', '.svn', '.hg',
+      \ 'go.mod', 'pyproject.toml',
+      \ 'setup.py', 'requirements.txt',
+      \ 'compile_commands.json',
+      \ 'compile_flags.txt'
+      \ ]
+let g:lsp_settings_filetype_go = ['gopls']
+let g:lsp_settings_filetype_python = ['pylsp']
+let g:lsp_preview_float = 1
+let g:lsp_preview_autoclose = 1
+let g:lsp_document_highlight_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_format_sync_timeout = 1000
+let g:lsp_semantic_enabled = 1
+let g:lsp_semantic_delay = 500
+
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  if exists('+signcolumn')
+    setlocal signcolumn=yes
+  endif
+  if exists('+tagfunc')
+    setlocal tagfunc=lsp#tagfunc
+  endif
+
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> gr <plug>(lsp-references)
+  nmap <buffer> gpr <plug>(lsp-references)
+  nmap <buffer> gD <plug>(lsp-declaration)
+  nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> gy <plug>(lsp-type-definition)
+  nmap <buffer> K <plug>(lsp-hover)
+  nmap <buffer> gpd <plug>(lsp-peek-definition)
+  nmap <buffer> gpi <plug>(lsp-peek-implementation)
+  nmap <buffer> gpy <plug>(lsp-peek-type-definition)
+  nmap <buffer> gP <plug>(lsp-preview-close)
+  nmap <buffer> <leader>rn <plug>(lsp-rename)
+  nmap <buffer> <leader>ca <plug>(lsp-code-action)
+  nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+  nnoremap <buffer> <leader>lf :LspDocumentFormat<CR>
+endfunction
+
+augroup premium_lsp
+  autocmd!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+"}}} LSP configurations
 
 "{{{ vim-airline's status bar style
 " powerline symbols
