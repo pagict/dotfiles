@@ -13,7 +13,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'pineapplegiant/spaceduck'
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
@@ -42,6 +44,8 @@ let g:lsp_settings_root_markers = [
       \ 'compile_commands.json',
       \ 'compile_flags.txt'
       \ ]
+let g:lsp_settings_filetype_c = ['clangd']
+let g:lsp_settings_filetype_cpp = ['clangd']
 let g:lsp_settings_filetype_go = ['gopls']
 let g:lsp_settings_filetype_python = ['pylsp']
 let g:lsp_preview_float = 1
@@ -51,6 +55,37 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_format_sync_timeout = 1000
 let g:lsp_semantic_enabled = 1
 let g:lsp_semantic_delay = 500
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noinsert,noselect
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+imap <C-Space> <Plug>(asyncomplete_force_refresh)
+imap <C-@> <Plug>(asyncomplete_force_refresh)
+
+function! s:asyncomplete_force_refresh_after(char) abort
+  if &paste || !exists('g:asyncomplete_loaded')
+    return a:char
+  endif
+  return a:char . (pumvisible() ? "\<C-e>" : '') . "\<C-r>=asyncomplete#_force_refresh()\<CR>"
+endfunction
+
+function! s:asyncomplete_force_refresh_after_if_prev(char, prev) abort
+  if col('.') < 2 || getline('.')[col('.') - 2] !=# a:prev
+    return a:char
+  endif
+  return s:asyncomplete_force_refresh_after(a:char)
+endfunction
+
+augroup premium_lsp_completion
+  autocmd!
+  autocmd FileType go inoremap <buffer><expr> . <SID>asyncomplete_force_refresh_after('.')
+  autocmd FileType c,cpp inoremap <buffer><expr> . <SID>asyncomplete_force_refresh_after('.')
+  autocmd FileType c,cpp inoremap <buffer><expr> > <SID>asyncomplete_force_refresh_after_if_prev('>', '-')
+  autocmd FileType cpp inoremap <buffer><expr> : <SID>asyncomplete_force_refresh_after_if_prev(':', ':')
+augroup END
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -82,6 +117,88 @@ endfunction
 augroup premium_lsp
   autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+function! s:goto_quickfix_file_window(is_loclist) abort
+  if a:is_loclist
+    let l:filewinid = get(getloclist(0, {'filewinid': 0}), 'filewinid', 0)
+    if l:filewinid && win_gotoid(l:filewinid)
+      return 1
+    endif
+  endif
+
+  let l:prev_winid = win_getid(winnr('#'))
+  if l:prev_winid && win_gotoid(l:prev_winid) && &buftype !=# 'quickfix'
+    return 1
+  endif
+
+  for l:wininfo in getwininfo()
+    if get(l:wininfo, 'tabnr', 0) == tabpagenr()
+          \ && !get(l:wininfo, 'quickfix', 0)
+          \ && getbufvar(l:wininfo.bufnr, '&buftype') ==# ''
+      return win_gotoid(l:wininfo.winid)
+    endif
+  endfor
+
+  return 0
+endfunction
+
+function! s:open_quickfix_item_in_vsplit(item) abort
+  let l:lnum = max([get(a:item, 'lnum', 1), 1])
+  let l:col = max([get(a:item, 'col', 1), 1])
+  let l:bufnr = get(a:item, 'bufnr', 0)
+
+  if l:bufnr > 0 && bufexists(l:bufnr)
+    execute 'rightbelow vertical sbuffer ' . l:bufnr
+  else
+    let l:filename = get(a:item, 'filename', '')
+    if empty(l:filename)
+      echohl WarningMsg
+      echom 'Quickfix item has no file to open'
+      echohl None
+      return
+    endif
+    execute 'rightbelow vertical split ' . fnameescape(l:filename)
+  endif
+
+  call cursor(l:lnum, l:col)
+  normal! zvzz
+endfunction
+
+function! s:quickfix_open_vsplit() abort
+  let l:qf_winid = win_getid()
+  let l:wininfo = get(getwininfo(l:qf_winid), 0, {})
+  if empty(l:wininfo) || !get(l:wininfo, 'quickfix', 0)
+    return
+  endif
+
+  let l:is_loclist = get(l:wininfo, 'loclist', 0)
+  let l:items = l:is_loclist ? getloclist(0) : getqflist()
+  let l:idx = line('.')
+  if l:idx < 1 || l:idx > len(l:items)
+    echohl WarningMsg
+    echom 'No quickfix item under cursor'
+    echohl None
+    return
+  endif
+
+  let l:item = l:items[l:idx - 1]
+  if !get(l:item, 'valid', 1)
+    echohl WarningMsg
+    echom 'Quickfix item under cursor is not valid'
+    echohl None
+    return
+  endif
+
+  if !s:goto_quickfix_file_window(l:is_loclist)
+    topleft new
+  endif
+  call s:open_quickfix_item_in_vsplit(l:item)
+endfunction
+
+augroup premium_quickfix
+  autocmd!
+  autocmd FileType qf nnoremap <buffer><silent> gv :<C-U>call <SID>quickfix_open_vsplit()<CR>
 augroup END
 "}}} LSP configurations
 

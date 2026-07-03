@@ -18,6 +18,17 @@ LSP buffer 启用后生效：
 - `<leader>ca`：code action
 - `<leader>lf`：format 当前 buffer
 - `[g` / `]g`：上一条/下一条 diagnostic
+- quickfix/location list 中的 `gv`：垂直分屏打开当前条目，适合当前文件未保存时从 `gr`/`gd` 结果跳到其他文件继续改。
+
+
+补全菜单的常用按键：
+
+- 输入时自动弹出候选项。
+- Go 输入 `.` 后会立即刷新 LSP 补全，例如 `rsp.` 会请求 `gopls` 返回 `rsp` 对应类型的字段 / 方法；C/C++ 输入 `.`, `->`, `::` 时同样会刷新。
+- `<Tab>` / `<S-Tab>`：在候选项中上下选择。
+- `<Enter>`：关闭补全菜单；如果已经用 `<Tab>` 选中候选项，保留当前选中内容。
+- `<Ctrl-Space>`：手动刷新补全。
+- 原生 omnifunc 仍然可用：`<Ctrl-X><Ctrl-O>`。
 
 ## Go 语法高亮
 
@@ -90,11 +101,3 @@ let g:lsp_settings_filetype_json = ['json-languageserver']
 let g:lsp_settings_filetype_yaml = ['yaml-language-server']
 let g:lsp_settings_filetype_vim = ['vim-language-server']
 ```
-
-4. 打开对应语言文件后执行：
-
-```vim
-:LspInstallServer
-```
-
-`vim-lsp-settings` 会把 server 安装到 `~/.vim-lsp-settings/servers`，之后打开相同 filetype 的文件会自动启动。
