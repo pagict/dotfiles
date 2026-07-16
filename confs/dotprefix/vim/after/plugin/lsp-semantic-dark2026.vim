@@ -1,36 +1,36 @@
 " VS Code Dark 2026 semantic token mapping for vim-lsp.
-" Go variables are white and methods/functions are purple in the observed theme.
+" Values come from VS Code's active colorThemeData.
 if exists('g:loaded_premium_lsp_semantic_dark2026')
   finish
 endif
 let g:loaded_premium_lsp_semantic_dark2026 = 1
 
 function! s:dark2026_semantic_highlights() abort
-  highlight! LspSemanticType          ctermfg=229 guifg=#FFEEAD
-  highlight! LspSemanticClass         ctermfg=229 guifg=#FFEEAD
-  highlight! LspSemanticEnum          ctermfg=229 guifg=#FFEEAD
-  highlight! LspSemanticInterface     ctermfg=229 guifg=#FFEEAD
-  highlight! LspSemanticStruct        ctermfg=229 guifg=#FFEEAD
-  highlight! LspSemanticTypeParameter ctermfg=229 guifg=#FFEEAD
+  highlight! LspSemanticType          ctermfg=80  guifg=#4EC9B0
+  highlight! LspSemanticClass         ctermfg=80  guifg=#4EC9B0
+  highlight! LspSemanticEnum          ctermfg=80  guifg=#4EC9B0
+  highlight! LspSemanticInterface     ctermfg=80  guifg=#4EC9B0
+  highlight! LspSemanticStruct        ctermfg=80  guifg=#4EC9B0
+  highlight! LspSemanticTypeParameter ctermfg=80  guifg=#4EC9B0
 
-  highlight! LspSemanticVariable      ctermfg=15  guifg=#FFFFFF
-  highlight! LspSemanticParameter     ctermfg=15  guifg=#FFFFFF
-  highlight! LspSemanticProperty      ctermfg=15  guifg=#FFFFFF
-  highlight! LspSemanticEnumMember    ctermfg=215 guifg=#FFC58F
-  highlight! LspSemanticEvent         ctermfg=15  guifg=#FFFFFF
+  highlight! LspSemanticVariable      ctermfg=252 guifg=#C9D1D9
+  highlight! LspSemanticParameter     ctermfg=252 guifg=#C9D1D9
+  highlight! LspSemanticProperty      ctermfg=117 guifg=#79C0FF
+  highlight! LspSemanticEnumMember    ctermfg=117 guifg=#79C0FF
+  highlight! LspSemanticEvent         ctermfg=117 guifg=#79C0FF
 
-  highlight! LspSemanticFunction      ctermfg=219 guifg=#EBBBFF
-  highlight! LspSemanticMethod        ctermfg=219 guifg=#EBBBFF
-  highlight! LspSemanticMacro         ctermfg=219 guifg=#EBBBFF
+  highlight! LspSemanticFunction      ctermfg=183 guifg=#D2A8FF
+  highlight! LspSemanticMethod        ctermfg=183 guifg=#D2A8FF
+  highlight! LspSemanticMacro         ctermfg=183 guifg=#D2A8FF
 
-  highlight! LspSemanticKeyword       ctermfg=219 guifg=#EBBBFF
-  highlight! LspSemanticModifier      ctermfg=219 guifg=#EBBBFF
-  highlight! LspSemanticComment       ctermfg=103 guifg=#7285B7
-  highlight! LspSemanticString        ctermfg=193 guifg=#D1F1A9
-  highlight! LspSemanticNumber        ctermfg=215 guifg=#FFC58F
-  highlight! LspSemanticRegexp        ctermfg=193 guifg=#D1F1A9
-  highlight! LspSemanticOperator      ctermfg=159 guifg=#99FFFF
-  highlight! LspSemanticDecorator     ctermfg=219 guifg=#EBBBFF
+  highlight! LspSemanticKeyword       ctermfg=210 guifg=#FF7B72
+  highlight! LspSemanticModifier      ctermfg=210 guifg=#FF7B72
+  highlight! LspSemanticComment       ctermfg=245 guifg=#8B949E
+  highlight! LspSemanticString        ctermfg=153 guifg=#A5D6FF
+  highlight! LspSemanticNumber        ctermfg=151 guifg=#B5CEA8
+  highlight! LspSemanticRegexp        ctermfg=153 guifg=#A5D6FF
+  highlight! LspSemanticOperator      ctermfg=252 guifg=#C9D1D9
+  highlight! LspSemanticDecorator     ctermfg=183 guifg=#D2A8FF
 
   highlight! link LspSemanticReadonlyVariable LspSemanticVariable
   highlight! link LspSemanticDefinitionVariable LspSemanticVariable
