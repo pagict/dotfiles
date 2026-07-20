@@ -50,3 +50,8 @@ if ($failedPackages.Count -or $ambiguousPackages.Count) {
         $ambiguousPackages | ForEach-Object { Write-Host "    $_" }
     }
 }
+
+$devConverterInstaller = Join-Path $scriptDir '..\apps\devconverter\install.ps1'
+if (Test-Path $devConverterInstaller) {
+    & $devConverterInstaller
+}
