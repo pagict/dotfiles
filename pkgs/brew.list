@@ -15,6 +15,7 @@ gnutls
 grep
 ripgrep
 htop
+lnav
 neofetch
 readline
 telnet

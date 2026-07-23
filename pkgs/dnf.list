@@ -4,6 +4,7 @@ bat                 # cat-alternative
 colord              # colorful
 fzf                 # shell fuzzy search
 ripgrep            # fast recursive search, provides rg
+lnav
 man                 #
 man-db              # manual pages
 man-pages           #
